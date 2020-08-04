@@ -1,7 +1,7 @@
 import React from 'react'
 import './Homepage.scss'
-import '../components/Directory'
-import Directory from '../components/Directory'
+import '../components/directory/Directory'
+import Directory from '../components/directory/Directory'
 
 function Homepage() {
   return (
