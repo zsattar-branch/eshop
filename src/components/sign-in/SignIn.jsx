@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormInput from '../form_input/FormInput'
 import Button from '../button/Button'
 import "./SignIn.scss"
+import { signInWithGoogle } from '../../firebase/firebase'
 
 export default class SignIn extends Component {
   constructor() {
@@ -23,7 +24,7 @@ export default class SignIn extends Component {
   handleChange = (e) => {
     const { value, name } = e.target
     this.setState({
-      [name]:value
+      [name]: value
     })
   }
 
@@ -48,8 +49,13 @@ export default class SignIn extends Component {
             handleChange={this.handleChange}
             label="password"
             required />
-          
-          <Button type="submit" >Sign In</Button>
+
+          <div className="buttons">
+            <Button type="submit" >Sign In</Button>
+            <Button onClick={signInWithGoogle} isGoogleSignIn>
+              Sign In With Google
+              </Button>
+          </div>
         </form>
 
       </div>
