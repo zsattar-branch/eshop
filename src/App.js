@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import {createStructuredSelector} from 'reselect'
 import Homepage from './pages/Homepage.jsx'
 import Shop from './pages/shop/Shop.jsx'
+import Checkout from './pages/checkout/Checkout.jsx'
 import Header from "./components/header/Header.jsx"
 import SignInAndSignUp from './pages/sign-in-and-sign-up/SignInAndSignUp.jsx'
 import { auth, createUserProfileDocument } from './firebase/firebase'
@@ -46,6 +47,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={Shop} />
+          <Route path="/checkout" component={Checkout}/>
           <Route exact path="/signin" render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUp />)} />
         </Switch>
       </div>
