@@ -33,7 +33,8 @@ function Checkout({cartItems, total}) {
         )
       }
       <div className="total">Total: ${total}</div>
-      <div className="test-warning">**Please use the following test credit card for payments**
+      <div className="test-warning">
+        **Please use the following test credit card for payments**
         <br />
         4242 4242 4242 4242 - Exp:1/21 CVV:123
       </div>
