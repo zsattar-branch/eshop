@@ -41,7 +41,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef
 }
 
-//added in later for shopData
+//added in later for shopData // then we deleted it because we dont want to keep adding data once the component mounts
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey)
   console.log(collectionRef) 
