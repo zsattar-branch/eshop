@@ -5,9 +5,15 @@ import CollectionOverview from '../../components/collections-overview/Collection
 import CollectionCategory from '../collection/CollectionCategory'
 import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.js'
 import { updateCollections } from '../../redux/shop/shop.actions'
+import Spinner from '../../components/spinner/Spinner'
+
+const CollectionOverviewWithSpinner = Spinner(CollectionOverview)
+const CollectionCategoryWithSpinner = Spinner(CollectionCategory)
 
 class Shop extends Component {
-
+  state = {
+    loading: true
+  }
   unsubscribeFromSnapshot = null
 
   componentDidMount() {
@@ -16,15 +22,20 @@ class Shop extends Component {
 
     this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
-      updateCollections(collectionsMap)
+      updateCollections(collectionsMap);
+      this.setState({
+        loading: false
+      })
     })
   }
 
   render() {
     const { match } = this.props
+    const { loading } = this.state
+
     return (<div className="shop-page">
-      <Route exact path={`${match.path}`} component={CollectionOverview} />
-      <Route path={`${match.path}/:collectionId`} component={CollectionCategory} />
+      <Route exact path={`${match.path}`} render={(props) => <CollectionOverviewWithSpinner isLoading={loading} {...props} />} />
+      <Route path={`${match.path}/:collectionId`} render={(props) => <CollectionCategoryWithSpinner isLoading={loading} {...props} />} />
     </div>)
   }
 }
