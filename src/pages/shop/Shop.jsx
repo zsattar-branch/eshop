@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import CollectionOverview from '../../components/collections-overview/CollectionOverview'
+import CollectionOverviewContainer from '../../components/collections-overview/CollectionOverviewContainer'
 import CollectionCategory from '../collection/CollectionCategory'
 // import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.js'
 import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions'
-import { selectIsCollectionFetching, selectIsCollectionsLoaded } from '../../redux/shop/shop.selector'
+import { selectIsCollectionsLoaded } from '../../redux/shop/shop.selector'
 import Spinner from '../../components/spinner/Spinner'
 
 
-const CollectionOverviewWithSpinner = Spinner(CollectionOverview)
 const CollectionCategoryWithSpinner = Spinner(CollectionCategory)
 
 class Shop extends Component {
@@ -50,18 +49,28 @@ class Shop extends Component {
   }
 
   render() {
-    const { match, isFetching, isCollectionLoaded } = this.props
+    const { match, isCollectionLoaded } = this.props
     // const { loading } = this.state
-
+    //we can change the CollectionCategoryWithSpinner to OverviewContainer as well
     return (<div className="shop-page">
-      <Route exact path={`${match.path}`} render={(props) => <CollectionOverviewWithSpinner isLoading={isFetching} {...props} />} />
-      <Route path={`${match.path}/:collectionId`} render={(props) => <CollectionCategoryWithSpinner isLoading={!isCollectionLoaded} {...props} />} />
+      <Route
+        exact
+        path={`${match.path}`}
+        component={CollectionOverviewContainer} 
+      />
+      
+      <Route
+        path={`${match.path}/:collectionId`}
+        render={(props) =>
+          <CollectionCategoryWithSpinner
+            isLoading={!isCollectionLoaded}
+            {...props} />}
+      />
     </div>)
   }
 }
 
 const mapStateToProps = createStructuredSelector({
-  isFetching: selectIsCollectionFetching,
   isCollectionLoaded: selectIsCollectionsLoaded
 })
 
