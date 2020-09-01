@@ -5,9 +5,18 @@ import { selectionCollection } from '../../redux/shop/shop.selector'
 import './Collection.scss'
 import CollectionItem from '../../components/collection_item/Collection_Item'
 
+// import { firestore} from '../../firebase/firebase'
 
 function CollectionCategory({ collection }) {
-  // console.log(collection)
+  // cleanup function used below and described how it is used. when it mounts it shows the snapshot. When it unmounts it shows the i am unsubscribed
+
+  // useEffect(() => {
+  //   const unsubscribe = firestore.collection('collections').onSnapshot(snapshot => console.log(snapshot))
+  //   return () => {
+  //     console.log('I am unsubscribed')
+  //     unsubscribe()
+  //   }
+  // })
   const {title, items} = collection
   return (
     <div className="collection-page">

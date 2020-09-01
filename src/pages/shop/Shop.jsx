@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
@@ -12,7 +12,7 @@ import Spinner from '../../components/spinner/Spinner'
 
 const CollectionCategoryWithSpinner = Spinner(CollectionCategory)
 
-class Shop extends Component {
+// class Shop extends Component {
   // state = {
   //   loading: true
   // }
@@ -43,31 +43,40 @@ class Shop extends Component {
   //   })
   // }
 
-  componentDidMount() {
-    const { fetchCollectionsStartAsync } = this.props
-    fetchCollectionsStartAsync()
-  }
+function Shop({ match, isCollectionLoaded, fetchCollectionsStartAsync }) {
+  //can also be destructed this way^^ or below
+  // const Shop = ({match,fetchCollectionsStartAsync,isCollectionLoaded}) => {
 
-  render() {
-    const { match, isCollectionLoaded } = this.props
-    // const { loading } = this.state
-    //we can change the CollectionCategoryWithSpinner to OverviewContainer as well
-    return (<div className="shop-page">
-      <Route
-        exact
-        path={`${match.path}`}
-        component={CollectionOverviewContainer} 
-      />
+  
+  useEffect(() => {
+    fetchCollectionsStartAsync()
+  }, [fetchCollectionsStartAsync])
+  
+  //former lifecycle method 
+  
+   // componentDidMount() {
+  //   const { fetchCollectionsStartAsync } = this.props
+  //   fetchCollectionsStartAsync()
+  // }
+
+
+  //we can change the CollectionCategoryWithSpinner to OverviewContainer as well
+  return (<div className="shop-page">
+    <Route
+      exact
+      path={`${match.path}`}
+      component={CollectionOverviewContainer}
+    />
       
-      <Route
-        path={`${match.path}/:collectionId`}
-        render={(props) =>
-          <CollectionCategoryWithSpinner
-            isLoading={!isCollectionLoaded}
-            {...props} />}
-      />
-    </div>)
-  }
+    <Route
+      path={`${match.path}/:collectionId`}
+      render={(props) =>
+        <CollectionCategoryWithSpinner
+          isLoading={!isCollectionLoaded}
+          {...props} />}
+    />
+  </div>)
+  
 }
 
 const mapStateToProps = createStructuredSelector({

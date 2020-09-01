@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import FormInput from '../form_input/FormInput'
 import Button from '../button/Button'
 import { auth, createUserProfileDocument } from '../../firebase/firebase'
@@ -6,20 +6,13 @@ import { auth, createUserProfileDocument } from '../../firebase/firebase'
 
 import './SignUp.scss'
 
-export default class SignUp extends Component {
-  constructor() {
-    super()
-    this.state = {
-      displayName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    }
-  }
+export default function SignUp() {
+  const [inputValue, setInputValue] = useState({ displayName: '', email: '', password: '', confirmPassword: '' })
 
-  handleSubmit = async (e) => {
+  const { displayName, email, password, confirmPassword } = inputValue
+  
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const { displayName, email, password, confirmPassword } = this.state
 
     if (password !== confirmPassword) {
       alert("passwords don't match")
@@ -30,67 +23,67 @@ export default class SignUp extends Component {
       const { user } = await auth.createUserWithEmailAndPassword(email, password)
 
       await createUserProfileDocument(user, { displayName })
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      })
+      // this.setState({
+      //   displayName: '',
+      //   email: '',
+      //   password: '',
+      //   confirmPassword: ''
+      // })
 
     } catch (error) {
       console.log(error)
     }
   }
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { value, name } = e.target
-    this.setState({[name]:value})
+    setInputValue({ ...inputValue, [name]: value })
   }
 
-  render() {
-    const { displayName, email, password, confirmPassword } = this.state
-    return (
-      <div className='sign-up'>
-        <h2 className="title">I do not have a account</h2>
-        <span>Sign Up with your email and password</span>
-        <form className="sign-up-form" onSubmit={this.handleSubmit}>
-          <FormInput
-            type="text"
-            name="displayName"
-            value={displayName}
-            onChange={this.handleChange}
-            label="Display Name"
-            required
-          />
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-            label="Email"
-            required
-          />
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-            label="Password"
-            required
-          />
-          <FormInput
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={this.handleChange}
-            label="Confirm Password"
-            required
-          />
-          <Button type="submit">Sign Up</Button>
 
-        </form>
 
-      </div>
-    )
-  }
+  return (
+    <div className='sign-up'>
+      <h2 className="title">I do not have a account</h2>
+      <span>Sign Up with your email and password</span>
+      <form className="sign-up-form" onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          name="displayName"
+          value={displayName}
+          onChange={handleChange}
+          label="Display Name"
+          required
+        />
+        <FormInput
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          label="Email"
+          required
+        />
+        <FormInput
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          label="Password"
+          required
+        />
+        <FormInput
+          type="password"
+          name="confirmPassword"
+          value={confirmPassword}
+          onChange={handleChange}
+          label="Confirm Password"
+          required
+        />
+        <Button type="submit">Sign Up</Button>
+
+      </form>
+
+    </div>
+  )
 }
+
