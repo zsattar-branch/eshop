@@ -26,9 +26,9 @@ function Header({ currentUser, hidden }) {
           CONTACT
         </OptionLink>
         {currentUser ?
-            <OptionDiv onClick={() => auth.signOut()}>Sign Out</OptionDiv>
+            <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
             :
-            <OptionLink to="/signin">Sign In</OptionLink>
+            <OptionLink to="/signin">SIGN IN</OptionLink>
         }
         <CartIcon />
       </OptionsContainer>

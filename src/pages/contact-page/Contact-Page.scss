@@ -1,0 +1,83 @@
+$sub-color: grey;
+$main-color: black;
+
+.contact-page {
+  margin: 45px 0;
+  display: flex;
+  justify-content: center;
+
+  .contact-form {
+    background: none;
+    background-color: white;
+    color: $sub-color;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 75%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $sub-color;
+    margin: 25px 0;
+
+  }
+}
+
+input[type='name'] {
+  letter-spacing: 0.3em;
+  padding: 10px;
+}
+
+input[type='email'] {
+  letter-spacing: 0.3em;
+  padding: 10px;
+}
+
+textarea[type='message'] {
+  letter-spacing: 0.3em;
+}
+
+.contact-us{
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.contact-name {
+  color: $sub-color;
+  font-size: 16px;
+  font-weight: normal;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+  margin:20px 0 10px 0;   
+  border-radius: 5px;
+}
+.contact-email {
+  color: $sub-color;
+  font-size: 16px;
+  font-weight: normal;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+  margin:10px 0 10px 0;
+  border-radius: 5px;
+}
+.contact-message {
+  color: $sub-color;
+  font-size: 16px;
+  font-weight: normal;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+  margin:10px 0 20px 0;
+  border-radius: 5px;
+}
+
+.center-div{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
