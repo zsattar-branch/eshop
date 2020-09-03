@@ -1,10 +1,10 @@
 import { ShopActionTypes } from './shop.type'
 import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase'
 
-// export const updateCollections = collectionsMap => ({
-//   type: ShopActionTypes.UPDATE_COLLECTIONS,
-//   payload:collectionsMap
-// })
+export const updateCollections = collectionsMap => ({
+  type: ShopActionTypes.UPDATE_COLLECTIONS,
+  payload:collectionsMap
+})
 
 export const fetchCollectionsStart = () => ({
   type: ShopActionTypes.FETCH_COLLECTIONS_START
