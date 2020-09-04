@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 const OptionsContainerStyles = css`
   padding: 10px 15px;
   cursor: pointer;
+  @media screen and (max-width:800px){
+    padding: 5px 7px;
+  }
 `;
 
 export const HeaderContainer = styled.div`
@@ -22,7 +25,7 @@ export const HeaderContainer = styled.div`
 export const LogoContainer = styled(Link)`
     height: 100%;
     width: 70px;
-    padding: 25px;
+    padding: 5px;
     @media screen and (max-width: 800px) {
       width: 50px;
       padding: 0;
