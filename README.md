@@ -42,15 +42,18 @@ https://zainsgearshop.netlify.app/
 
 https://xd.adobe.com/view/1fc940eb-3fa7-4318-bdc0-fe425720f0bf-4a9a/ 
 
-Desktop View
+Desktop View:
+
 ![desktop](https://i.imgur.com/L97pMNw.png)
 ![desktop2](https://i.imgur.com/EAf5F5D.png)
 
 Tablet View:
+
 ![tablet](https://i.imgur.com/FLYdYY2.png)
 ![tablet](https://i.imgur.com/lVNar89.png)
 
 Mobile View:
+
 ![mobile](https://i.imgur.com/6tNBgVR.png)
 ![mobile](https://i.imgur.com/X9dxY5y.png)
 
